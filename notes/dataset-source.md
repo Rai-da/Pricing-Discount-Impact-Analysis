@@ -1,0 +1,1 @@
+Dataset source note: The current project files do not document an external dataset source or download URL. Do not describe the dataset as Kaggle, Superstore, or synthetic without verification. The Power BI model and SQL use the table `store_sales_data`.
