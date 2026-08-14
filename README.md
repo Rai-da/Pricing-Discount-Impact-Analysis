@@ -94,7 +94,7 @@ Translates the analysis into an actionable pricing strategy.
 ```text
 Pricing-Discount-Impact-Analysis/
 │
-├── Pricing & Discount Impact Analysis.pbix
+├── Pricing_Discount_Impact_Analysis.pbix
 ├── sql/
 │   └── pricing_discount_impact_analysis.sql
 ├── screenshots/
