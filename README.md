@@ -18,15 +18,15 @@ The objective is not simply to find the discount that generates the highest sale
 ```text
 Pricing-Discount-Impact-Analysis/
 │
-├── PowerBI/
-│   └── Pricing & Discount Impact Analysis.pbix
-│
+├── Pricing & Discount Impact Analysis.pbix
 ├── sql/
 │   └── pricing_discount_impact_analysis.sql
-│
 ├── screenshots/
-│   └── dashboard screenshots
-│
+│   ├── executive-pricing-overview.png
+│   ├── discount-impact-analysis.png
+│   ├── category-product-pricing-analysis.png
+│   ├── customer-regional-analysis.png
+│   └── executive-pricing-recommendations.png
 ├── README.md
 └── LICENSE
 ```
@@ -47,41 +47,19 @@ The Power BI report contains five pages designed to move from overall performanc
 
 ### 1. Executive Pricing Overview
 
-Provides the high-level business view using:
-
-- Total Sales
-- Total Profit
-- Profit Margin %
-- Average Discount %
-- Profit per Transaction
-- Profit Margin by Discount Bucket
-- Average Discount % vs Profit Margin % by Year
+Provides the high-level business view using Total Sales, Total Profit, Profit Margin %, Average Discount %, Profit per Transaction, Profit Margin by Discount Bucket, and Average Discount % vs Profit Margin % by Year.
 
 ### 2. Discount Impact Analysis
 
-Examines how increasing discounts affect:
-
-- Profit margin
-- Profit per transaction
-- Transaction count
-- Total profit
-
-The key tension is visible here: higher discounts can increase total profit through volume while simultaneously reducing margin and profit per transaction.
+Examines how increasing discounts affect profit margin, profit per transaction, transaction count, and total profit.
 
 ### 3. Category & Product Pricing Analysis
 
-Drills into pricing behavior by product category and individual products, including:
-
-- Observed best-profit discount by category
-- Profit margin loss from 0% to 50% discount
-- High-selling products with weak margins
-- Highest-profit product / discount combinations
+Drills into pricing behavior by category and product, including observed best-profit discount by category, profit margin loss from 0% to 50% discount, high-selling products with weak margins, and high-profit product/discount combinations.
 
 ### 4. Customer & Regional Analysis
 
 Tests whether discount performance differs by customer segment and geography.
-
-Observed best-profit discount levels in the historical data were:
 
 | Dimension | Observed best-profit discount |
 |---|---:|
@@ -94,23 +72,39 @@ Observed best-profit discount levels in the historical data were:
 
 ### 5. Executive Pricing Recommendations
 
-Translates the analysis into an actionable pricing strategy:
+Translates the analysis into an actionable pricing strategy: use small targeted discounts, allow category/segment/regional flexibility, and prioritize margin and profit per transaction over total profit alone.
 
-- Use **small, targeted discounts** rather than blanket high discounts.
-- Treat **1%–5%** as the general observed/recommended range for most situations rather than using high discounts universally.
-- Allow **category, segment, and regional flexibility** where the historical data differs.
-- Prioritize **profit margin and profit per transaction**, not total profit alone.
-- Validate proposed pricing changes with controlled testing before full rollout.
+## Dashboard Preview
+
+### Executive Pricing Overview
+
+![Executive Pricing Overview](screenshots/executive-pricing-overview.png)
+
+### Discount Impact Analysis
+
+![Discount Impact Analysis](screenshots/discount-impact-analysis.png)
+
+### Category & Product Pricing Analysis
+
+![Category & Product Pricing Analysis](screenshots/category-product-pricing-analysis.png)
+
+### Customer & Regional Analysis
+
+![Customer & Regional Analysis](screenshots/customer-regional-analysis.png)
+
+### Executive Pricing Recommendations
+
+![Executive Pricing Recommendations](screenshots/executive-pricing-recommendations.png)
 
 ## Key Findings
 
 ### 1. Discounting creates a clear margin trade-off
 
-Profit margin declines as discount levels increase. The discount-bucket analysis shows a consistent downward relationship between discount intensity and margin.
+Profit margin declines as discount levels increase.
 
 ### 2. Total profit can be misleading
 
-Very high discounts can produce higher total profit because of transaction volume. That does **not** mean they are financially better on a per-sale basis. Profit margin and profit per transaction provide the counter-view.
+Very high discounts can produce higher total profit through transaction volume while still producing lower margin and profit per transaction.
 
 ### 3. Discount sensitivity is category-specific
 
@@ -118,45 +112,25 @@ The observed loss in profit margin from 0% to 50% discount differs by category, 
 
 ### 4. Small discounts are more defensible than blanket high discounts
 
-The analysis suggests that the business should capture volume with targeted low discounts while avoiding unnecessary margin erosion from aggressive blanket discounting.
+The analysis supports using targeted lower discounts rather than applying aggressive discounts broadly.
 
-### 5. The right discount differs by customer and region
+### 5. Discount performance varies by customer and region
 
-The historical data does not support one universal discount level. Customer segment and regional results show different observed profit-maximizing discount levels.
+The historical data does not support one universal discount level across all customer segments and regions.
 
 ## SQL Analysis
 
-The `sql/pricing_discount_impact_analysis.sql` file contains the analysis used to investigate:
+The `sql/pricing_discount_impact_analysis.sql` file contains the analysis used to investigate discount vs profit margin, sales and profit, profit per transaction, transaction changes, category-level discount profitability, product performance, segment behavior, regional behavior, and year-level trends.
 
-- Discount vs profit margin
-- Discount vs total sales and total profit
-- Profit per transaction
-- Transaction volume changes by discount
-- Category-level discount profitability
-- Margin loss from 0% to 50% discount
-- Category-specific best-profit discounts
-- High-selling products with weak margins
-- High-profit product / discount combinations
-- Segment-level discount profitability
-- Region-level discount profitability
-- Year-level discount and margin trends
-
-Window functions such as `RANK()`, `ROW_NUMBER()`, `NTILE()`, and `LAG()` were used where ranking or comparison across groups was required.
+Key SQL techniques include `RANK()`, `ROW_NUMBER()`, `NTILE()`, `LAG()`, CTEs, aggregation, conditional bucketing, and profitability calculations.
 
 ## Business Recommendation
 
-The central recommendation from the analysis is:
-
 > **Use small, targeted discounts rather than blanket high discounts. Prioritize margin and profit per transaction over total profit alone.**
 
-The analysis should be interpreted as **observational**, not causal. A higher discount and higher/lower sales outcome do not by themselves prove that the discount caused the change. Controlled experiments or A/B tests would be required before making a causal pricing decision.
-
-## Dashboard Preview
-
-Dashboard screenshots can be added under `screenshots/` for quick portfolio viewing. The `.pbix` file contains the full interactive Power BI report.
+The analysis is **observational, not causal**. Controlled experiments or A/B tests would be required before making causal pricing decisions or rolling out discount changes at scale.
 
 ## Author
 
-**Rai-da**
-
+**Rai-da**  
 Data Analytics / Business Intelligence Portfolio Project
